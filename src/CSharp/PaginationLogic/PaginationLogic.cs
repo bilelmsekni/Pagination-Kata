@@ -18,7 +18,9 @@ namespace PaginationLogic
 
         public PaginationResults Paginate(int ps, int rp)
         {
-            var elements = _itemDao.GetItems(FilterCriteria.GetFilters());
+            var _logger = LoggingFactory.Instance.GetMagicLogger();
+            _logger.StartLogging();
+            var elements = _itemDao.GetItems(GetFilters());
             int firstPage;
             int lastpage;
             int previousPage;
@@ -81,13 +83,10 @@ namespace PaginationLogic
             results.LastPage = lastpage;
             results.PreviousPage = previousPage;
             results.NextPage = nextPage;
-
+            _logger.EndLogging();
             return results;
         }
-    }
 
-    public class FilterCriteria
-    {
         public static Filter GetFilters()
         {
             return new Filter

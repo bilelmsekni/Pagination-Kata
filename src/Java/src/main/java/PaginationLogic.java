@@ -1,3 +1,5 @@
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +16,9 @@ public class PaginationLogic {
 
     public PaginationResults Paginate(int ps, int rp)
     {
-        List<Item> elements = _itemDao.GetItems(FilterCriteria.GetFilters());
+        MagicLogger _logger = LoggingFactory.GetInstance().GetMagicLogger();
+        _logger.StartLogging();
+        List<Item> elements = _itemDao.GetItems(GetFilters());
         int firstPage;
         int lastpage;
         int previousPage;
@@ -77,12 +81,9 @@ public class PaginationLogic {
         results.LastPage = lastpage;
         results.PreviousPage = previousPage;
         results.NextPage = nextPage;
-
+        _logger.EndLogging();
         return results;
     }
-}
-
-class FilterCriteria {
 
     public static Filter GetFilters()
     {
@@ -93,6 +94,39 @@ class FilterCriteria {
     }
 }
 
+class LoggingFactory {
+    private LoggingFactory()
+    {
+
+    }
+
+    private static LoggingFactory _logger;
+
+    public static LoggingFactory GetInstance()
+    {
+        if (_logger == null)
+        {
+            _logger = new LoggingFactory();
+        }
+        return _logger;
+    }
+
+    public MagicLogger GetMagicLogger()
+    {
+        return new MagicLogger();
+    }
+
+}
+
+class MagicLogger {
+    public void StartLogging() {
+        throw new NotImplementedException();
+    }
+
+    public void EndLogging() {
+        throw new NotImplementedException();
+    }
+}
 class Filter {
     public String Name;
     public ItemQuality RequiredQuality;
@@ -118,7 +152,7 @@ class ItemDao
 {
     public List<Item> GetItems(Filter filter)
     {
-        return new ArrayList<Item>();
+        throw new NotImplementedException();
     }
 }
 
