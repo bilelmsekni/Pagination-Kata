@@ -70,5 +70,13 @@ The rules are:
   * required page + 1
   
 Examples:
-
+	Given the items count is 7
+	And the number of items per page is 2
+	And the required page is 2
+	When i paginate
+	Then the first page is 1
+	And the last page is 4
+	And the previous page is 1
+	And the next page is 3
+	And the items displayed in page are [3,4]
 
