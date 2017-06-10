@@ -14,7 +14,8 @@ Table of Contents
   5. Contacts
   6. Credits
 
-1. Preparing your machine
+
+Preparing your machine
 ===============
 
 1.1. Java
@@ -49,7 +50,7 @@ Table of Contents
    
    Install-Package NSubstitute
    
-   2. Pagination Kata
+Pagination Kata
 ===============
 
 You would like to paginate the items you are retrieving from the database before displaying them on a certain page.
